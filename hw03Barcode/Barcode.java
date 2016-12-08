@@ -35,12 +35,47 @@ public class Barcode implements Comparable<Barcode>{
 	return sum;
     }
 
+    //convert to zip
+    public static String toZip(String code){
+	
+    }
+
+    //convert to code
+    public static String toCode(String zip){
+	switch (){
+	case 1: "1" = ":::||";
+	    break;
+	case 2: "2" = "::|:|";
+	    break;
+	case 3: "3" = "::||:";
+	    break;
+	case 4: "4" = ":|::|";
+	    break;
+	case 5: "5" = ":|:|:";
+	    break;
+	case 6: "6" = ":||::";
+	    break;
+	case 7: "7" = "|:::|";
+	    break;
+	case 8: "8" = "|::|:";
+	    break;
+	case 9: "9" = "|:|::";
+	    break;
+	case 0: "0" = "||:::";
+	    break;
+	}
+    }
+
     //postcondition: format zip + check digit + Barcode 
     //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
-    public String toString(){}
+    public String toString(){
+	
+    }
 
 
     // postcondition: compares the zip + checkdigit, in numerical order. 
-    public int compareTo(Barcode other){}
+    public int compareTo(Barcode other){
+	return _zip.compareTo(other._zip);
+    }
     
 }
