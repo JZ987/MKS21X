@@ -1,9 +1,11 @@
+import java.util.*;
+
 public class Barcode implements Comparable<Barcode>{
 
     // instance variables
     private String _zip;
     private int _checkDigit;
-
+    
     // constructors
     //precondtion: _zip.length() = 5 and zip contains only digits.
     //postcondition: throws a runtime exception zip is not the correct length
@@ -11,9 +13,15 @@ public class Barcode implements Comparable<Barcode>{
     //               _zip and _checkDigit are initialized.
     
     public Barcode(String zip){
-	if(zip.length() != 5 || zip.contains("[a-zA-Z]+")){
-	    throw IllegalArgumentException();
+	if(zip.length() != 5){
+	    throw new IllegalArgumentException("Wrong length");
 	}
+	try{
+	    Integer.parseInt(zip);
+	}catch(Exception e){
+	    throw new IllegalArgumentException("Should contain only numbers");
+	}
+	
 	_zip = zip;
 	_checkDigit = checkSum();
 	
@@ -30,15 +38,24 @@ public class Barcode implements Comparable<Barcode>{
     private int checkSum(){
 	int sum = 0;
 	for(int i = 0; i < _zip.length(); i++){
-	    sum += Integer.parseInt(_zip.charAt(i));
+	    sum += Integer.parseInt(_zip.substring(i,i+1));
 	}
 	return sum % 10;
     }
 
     //convert to zip
     public static String toZip(String code){
-	if(code.length() != 32 || code.charAt(0) != '|' || code.charAt(31) != '|'){
-	    throw IllegalArgumentException();
+	if(code.length() != 32){
+	    throw new IllegalArgumentException("Code length should be 32");
+	}else if(code.charAt(0) != '|'){
+	    throw new IllegalArgumentException("Your code should start with |");
+	}else if(code.charAt(31) != '|'){
+	    throw new IllegalArgumentException("Your code should end with |");
+	}
+	for(int i = 0; i < code.length(); i++){
+	    if(code.charAt(i) != '|' && code.charAt(i) != ':'){
+		throw new IllegalArgumentException("Your code should only contain : or |");
+	    }
 	}
 
 	String zip = "";
@@ -64,8 +81,7 @@ public class Barcode implements Comparable<Barcode>{
 		break;
 	    case "||:::": zip += "0";
 		break;
-	    }else{
-		throw IllegalArgumentException("Code broken");
+	    default: throw new IllegalArgumentException("The code contains an incorrect pattern");
 	    }
 	}
 	return zip;
@@ -73,13 +89,18 @@ public class Barcode implements Comparable<Barcode>{
 
     //convert to code
     public static String toCode(String zip){
-	if(zip.length() != 5 || zip.contains("[a-zA-Z]+")){
-	    throw IllegalArgumentException("Wrong length or contain wrong character");
+	if(zip.length() != 6){
+	    throw new IllegalArgumentException("Wrong length");
+	}
+	try{
+	    Integer.parseInt(zip);
+	}catch(Exception e){
+	    throw new IllegalArgumentException("Should contain only numbers");
 	}
 	
 	String barcode = "|";
-	for(int i = 0; i < (_zip + _checkDigit).length(); i++){
-	    switch ((_zip + _checkDigit).charAt(i)){
+	for(int i = 0; i < zip.length(); i++){
+	    switch (zip.charAt(i)){
 	    case '1': barcode += ":::||";
 		break;
 	    case '2': barcode += "::|:|";
@@ -101,14 +122,16 @@ public class Barcode implements Comparable<Barcode>{
 	    case '0': barcode += "||:::";
 		break;
 	    }
-	    return barcode + "|";
-    }
+	}
+	return barcode + "|";
+	}
 
     //postcondition: format zip + check digit + Barcode 
     //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
     public String toString(){
-	return _zip + _checkDigit + "   " + toCode(_zip);
+	return _zip + _checkDigit + "   " + toCode(_zip + _checkDigit);
     }
+    
 
 
     // postcondition: compares the zip + checkdigit, in numerical order. 
