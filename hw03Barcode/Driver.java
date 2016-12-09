@@ -8,7 +8,7 @@ public class Driver{
 	System.out.println(b); //255439   |::|:|:|:|::|:|::|::|::||:|:|::|
 	
 	System.out.println(b.compareTo(b)); //0
-	System.out.println((new Barcode("11426")).compareTo(new Barcode("11426"))); //0
+	System.out.println((new Barcode("11425")).compareTo(new Barcode("11426"))); 
 	System.out.println(c.compareTo(b)); //some positive
 	System.out.println(d.compareTo(b)); //some negative
 	/*length
@@ -16,7 +16,7 @@ public class Driver{
 	  System.out.println(e);
 	*/
 	System.out.println(b.toZip("|||:::|::|::|::|:|:|::::|||::|:|"));
-	System.out.println(c.toCode("123123"));
+	System.out.println(c.toCode("12312"));
 	/*length
 	  Barcode e = new Barcode("1234");
 	  System.out.println(e);

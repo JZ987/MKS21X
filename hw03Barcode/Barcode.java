@@ -23,7 +23,7 @@ public class Barcode implements Comparable<Barcode>{
 	}
 	
 	_zip = zip;
-	_checkDigit = checkSum();
+	_checkDigit = checkSum(zip);
 	
     }
 
@@ -35,10 +35,10 @@ public class Barcode implements Comparable<Barcode>{
 
 
     // postcondition: computes and returns the check sum for _zip
-    private int checkSum(){
+    private static int checkSum(String zip){
 	int sum = 0;
-	for(int i = 0; i < _zip.length(); i++){
-	    sum += Integer.parseInt(_zip.substring(i,i+1));
+	for(int i = 0; i < zip.length(); i++){
+	    sum += Integer.parseInt(zip.substring(i,i+1));
 	}
 	return sum % 10;
     }
@@ -84,12 +84,16 @@ public class Barcode implements Comparable<Barcode>{
 	    default: throw new IllegalArgumentException("The code contains an incorrect pattern");
 	    }
 	}
-	return zip;
+	if((int)zip.charAt(5) != checkSum(zip.substring(0,5))){
+	  throw new IllegalArgumentException("Your checksum is invalid");
+	}else{
+	    return zip;
+	}
     }
 
     //convert to code
     public static String toCode(String zip){
-	if(zip.length() != 6){
+	if(zip.length() != 5){
 	    throw new IllegalArgumentException("Wrong length");
 	}
 	try{
@@ -98,9 +102,10 @@ public class Barcode implements Comparable<Barcode>{
 	    throw new IllegalArgumentException("Should contain only numbers");
 	}
 	
+	String Zip = zip + checkSum(zip);
 	String barcode = "|";
-	for(int i = 0; i < zip.length(); i++){
-	    switch (zip.charAt(i)){
+	for(int i = 0; i < Zip.length(); i++){
+	    switch (Zip.charAt(i)){
 	    case '1': barcode += ":::||";
 		break;
 	    case '2': barcode += "::|:|";
@@ -129,7 +134,7 @@ public class Barcode implements Comparable<Barcode>{
     //postcondition: format zip + check digit + Barcode 
     //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
     public String toString(){
-	return _zip + _checkDigit + "   " + toCode(_zip + _checkDigit);
+	return _zip + _checkDigit + "   " + toCode(_zip);
     }
     
 
