@@ -4,9 +4,10 @@ public class Driver{
 	Barcode b = new Barcode("25543");
 	Barcode c = new Barcode("97934");
 	Barcode d = new Barcode("00000");
+	Barcode a = new Barcode("08451");
 	System.out.println(c); //979342  ||:|::|:::||:|::::||::|::|::|:||
 	System.out.println(b); //255439   |::|:|:|:|::|:|::|::|::||:|:|::|
-	
+	System.out.println(a);
 	System.out.println(b.compareTo(b)); //0
 	System.out.println((new Barcode("11425")).compareTo(new Barcode("11426"))); 
 	System.out.println(c.compareTo(b)); //some positive
@@ -26,5 +27,4 @@ public class Driver{
 	  System.out.println(e);
 	*/
     }
-
 }

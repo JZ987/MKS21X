@@ -24,7 +24,6 @@ public class Barcode implements Comparable<Barcode>{
 	
 	_zip = zip;
 	_checkDigit = checkSum(zip);
-	
     }
 
     // postcondition: Creates a copy of a bar code.
@@ -84,10 +83,11 @@ public class Barcode implements Comparable<Barcode>{
 	    default: throw new IllegalArgumentException("The code contains an incorrect pattern");
 	    }
 	}
-	if((int)zip.charAt(5) != checkSum(zip.substring(0,5))){
-	  throw new IllegalArgumentException("Your checksum is invalid");
+
+	if(Character.getNumericValue(zip.charAt(5)) != checkSum(zip.substring(0,5))){
+	    throw new IllegalArgumentException("Your checksum is invalid");
 	}else{
-	    return zip;
+	    return zip.substring(0,5); 
 	}
     }
 
