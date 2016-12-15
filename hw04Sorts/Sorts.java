@@ -47,6 +47,19 @@ public class Sorts{
 	}
     }
 
+    public static void bubbleSort(int[] data){
+	int tempNumber;
+	for(int j = data.length; j >= 0; j--){
+	    for(int i = 0; i < data.length - 1; i++){
+		if(data[i] > data[i+1]){
+		    tempNumber = data[i+1];
+		    data[i+1] = data[i];
+		    data[i] = tempNumber;
+		}
+	    }
+	}
+    }
+
     private static void printArray(int[] data){
 	String str = "[";
 	for(int i = 0; i < data.length; i++){
@@ -63,11 +76,13 @@ public class Sorts{
 	int[] data = {64, 25, 12, 22, 11, 75};
 	int[] data2 = {5, 4, 3, 2, 1, 0, -1, -2, -3, -4};
     
-	printArray(data);
-	selectionSort(data);
-	selectionSort(data2);
+	//printArray(data);
+	//selectionSort(data);
+	//selectionSort(data2);
 	//insertionSort(data);
 	//insertionSort(data2);
+	bubbleSort(data);
+	bubbleSort(data2);
 	printArray(data);
 	printArray(data2);
     }
