@@ -25,6 +25,10 @@ public class Sorts{
 	}
     }
 
+    /**Insertion sort of an int array. 
+     *Upon completion, the elements of the array will be in increasing order.
+     *@param data  the elements to be sorted.
+     */
     public static void insertionSort(int[] data){
 	int currentNum;
 	for(int i = 1; i < data.length; i++){
@@ -47,6 +51,10 @@ public class Sorts{
 	}
     }
 
+    /**Bubble sort of an int array. 
+     *Upon completion, the elements of the array will be in increasing order.
+     *@param data  the elements to be sorted.
+     */
     public static void bubbleSort(int[] data){
 	int tempNumber;
 	for(int j = data.length; j >= 0; j--){
@@ -71,19 +79,34 @@ public class Sorts{
 	System.out.println(str + "]");
     }
 
+
+
+
+
+
+
+
     public static void main(String[] args){
 	
 	int[] data = {64, 25, 12, 22, 11, 75};
 	int[] data2 = {5, 4, 3, 2, 1, 0, -1, -2, -3, -4};
     
+
+	if(true){
+	    long startTime = System.currentTimeMillis();
+	    selectionSort(data);
+	    long endTime = System.currentTimeMillis();
+	    System.out.println(endTime - startTime);
+	}
+
 	//printArray(data);
 	//selectionSort(data);
 	//selectionSort(data2);
 	//insertionSort(data);
 	//insertionSort(data2);
-	bubbleSort(data);
-	bubbleSort(data2);
+	//bubbleSort(data);
+	//bubbleSort(data2);
 	printArray(data);
-	printArray(data2);
+	//printArray(data2);
     }
 }
