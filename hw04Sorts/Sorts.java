@@ -30,36 +30,45 @@ public class Sorts{
 	for(int i = 1; i < data.length; i++){
 	    currentNum = data[i];
 	    for(int j = i - 1; j >= 0; j--){
-		if(currentNum >= data[j]){
-		    for(int x = i; x > j; x++){
+		if(j == 0 && currentNum < data[0]){
+		    for(int x = i; x > j; x--){
 			data[x] = data[x-1];
 		    }
 		    data[j] = currentNum;
+		    break;
+		}else if(currentNum > data[j]){
+		    for(int x = i; x > j; x--){
+			data[x] = data[x-1];
+		    }
+		    data[j + 1] = currentNum;
+		    break;
 		}
 	    }
 	}
     }
 
+    private static void printArray(int[] data){
+	String str = "[";
+	for(int i = 0; i < data.length; i++){
+	    str += data[i];
+	    if(i < data.length - 1){
+		 str += ", ";
+	     }
+	}
+	System.out.println(str + "]");
+    }
+
     public static void main(String[] args){
 	
-	int[] data = {64, 25, 12, 22, 11};
+	int[] data = {64, 25, 12, 22, 11, 75};
+	int[] data2 = {5, 4, 3, 2, 1, 0, -1, -2, -3, -4};
     
-	String blah = "{";
-
-	for(int i = 0; i < data.length; i++){
-	    blah += data[i] + " ";
-	}
-
-	System.out.println(blah + "}");
-       	insertionSort(data);
-    
-	String bleh = "{";
-
-	for(int i = 0; i < data.length; i++){
-	    bleh += data[i] + " ";
-	}
-
-	System.out.println(bleh + "}");
-
+	printArray(data);
+	selectionSort(data);
+	selectionSort(data2);
+	//insertionSort(data);
+	//insertionSort(data2);
+	printArray(data);
+	printArray(data2);
     }
 }
