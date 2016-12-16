@@ -51,6 +51,21 @@ public class Sorts{
 	}
     }
 
+    //Mr.K's solution, for reference
+    /*public static void insertionSort(int[] data){
+	for(int i = 1; i < data.length; i++){
+	    int old = data[i];
+	    int index = i;
+	    while(index > 0 && old < data[index-1]){
+		data[index] = data[index-1];
+		index--;
+	    }
+	    data[index] = old;
+	    }
+	    }*/
+
+
+
     /**Bubble sort of an int array. 
      *Upon completion, the elements of the array will be in increasing order.
      *@param data  the elements to be sorted.
@@ -67,6 +82,24 @@ public class Sorts{
 	    }
 	}
     }
+
+    //Mr.K's solution, for reference
+    /*public static void bubbleSort(int[] data){
+	boolean swapped = true;
+	for(int end = data.length - 1; end > 0 && swapped; end--){
+	    swapped = false;
+	    for(int i = 0; i < end; i++){
+		if(data[i] > data[i+1]){
+		    int temp = data[i];
+		    data[i] = data[i+1];
+		    data[i+1] = temp;
+		    swapped = true;
+		}
+	    }
+	}
+	}*/
+
+
 
     private static void printArray(int[] data){
 	String str = "[";
