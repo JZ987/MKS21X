@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.text.*;
 
 public class TemperatureConvert extends JFrame implements ActionListener{
 
@@ -21,8 +22,9 @@ public class TemperatureConvert extends JFrame implements ActionListener{
 	}else if(temp.equals("C")){
 	    String tmp2 = fahrenheit.getText();
 	    double fah = Double.parseDouble(tmp2);
-	    double result2 = ((fah - 32)*(5/9));
-	    celsius.setText(String.valueOf(result2));
+	    double result2 = ((fah - 32) * 5) / 9;
+	    DecimalFormat numberFormat = new DecimalFormat("#0.0");
+	    celsius.setText(String.valueOf(numberFormat.format(result2)));
 	}
     }
 
@@ -56,11 +58,11 @@ public class TemperatureConvert extends JFrame implements ActionListener{
 	pane.add(label2);
 	pane.add(celsius);
 
-	label1.setBounds(270, 25, 100, 40);
+	label1.setBounds(260, 25, 100, 40);
 	fahrenheit.setBounds(240, 65, 120, 25);
 	toF.setBounds(100, 150, 150, 50);
 	toC.setBounds(350, 150, 150, 50);
-	label2.setBounds(280, 240, 100, 40);
+	label2.setBounds(275, 240, 100, 40);
 	celsius.setBounds(240, 280, 120, 25);
     }
 
