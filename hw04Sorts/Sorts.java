@@ -123,23 +123,24 @@ public class Sorts{
 	
 	int[] data = {64, 25, 12, 22, 11, 75};
 	int[] data2 = {5, 4, 3, 2, 1, 0, -1, -2, -3, -4};
-    
-
-	if(true){
-	    long startTime = System.currentTimeMillis();
-	    selectionSort(data);
-	    long endTime = System.currentTimeMillis();
-	    System.out.println(endTime - startTime);
-	}
+	int[] data3 = {};
 
 	//printArray(data);
+
 	//selectionSort(data);
 	//selectionSort(data2);
+	//selectionSort(data3);
+
 	//insertionSort(data);
 	//insertionSort(data2);
+	//insertionSort(data3);
+
 	//bubbleSort(data);
 	//bubbleSort(data2);
-	printArray(data);
+	//bubbleSort(data3);
+
+	//printArray(data);
 	//printArray(data2);
+	printArray(data3);
     }
 }
