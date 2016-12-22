@@ -13,15 +13,15 @@ public class TemperatureConvert extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
 	String temp = e.getActionCommand();
-	if(temp.equals("CtoF")){
+	if(temp.equals("F")){
 	    String tmp = celsius.getText();
 	    double cel = Double.parseDouble(tmp);
 	    double result = ((cel * 9) / 5) + 32;
 	    fahrenheit.setText(String.valueOf(result));
-	}else if(temp.equals("FtoC")){
+	}else if(temp.equals("C")){
 	    String tmp2 = fahrenheit.getText();
 	    double fah = Double.parseDouble(tmp2);
-	    double result2 = ((fah - 32) * (5/9));
+	    double result2 = ((fah - 32)*(5/9));
 	    celsius.setText(String.valueOf(result2));
 	}
     }
@@ -37,14 +37,15 @@ public class TemperatureConvert extends JFrame implements ActionListener{
 
 	toF = new JButton("C to F");
 	toF.addActionListener(this);
-	toF.setActionCommand("CtoF");
+	toF.setActionCommand("F");
 	
 	toC = new JButton("F to C");
 	toC.addActionListener(this);
-	toC.setActionCommand("FtoC");
+	toC.setActionCommand("C");
 
 	fahrenheit = new JTextField(12);
 	celsius = new JTextField(12);
+	
 	label1 = new JLabel("Fahrenheit");
 	label2 = new JLabel("Celsius");
 
